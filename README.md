@@ -37,21 +37,81 @@ A Python-based real-time virtual pen that uses your **webcam and index finger** 
 
 ## Key Design Decisions
 
-### Async detection
-MediaPipe runs in `LIVE_STREAM` mode with a result callback — detection happens in the background without blocking the camera loop, keeping the feed smooth.
+### Async Detection
+MediaPipe runs in `LIVE_STREAM` mode with a result callback — detection happens in the background without blocking the camera loop, keeping the feed smooth and lag-free.
 
-### Separate canvas layer
+### Separate Canvas Layer
 Drawing happens on a dedicated `numpy` black image, not directly on the camera frame. This means the live feed and the drawing are independent — the drawing persists across frames while the camera updates every frame.
 
-### Stroke reset on curl
+### Stroke Reset on Curl
 When `prev_pt` is set to `None` on finger curl, the next extension starts a brand new stroke with no connecting line — mimicking lifting a real pen off paper.
 
 ---
 
+## Hand Landmark Reference
+
+```
+8  ← INDEX FINGERTIP  (tracked for drawing position)
+|
+7
+|
+6  ← INDEX PIP JOINT  (compared to tip to detect finger state)
+|
+5
+|
+0  ← WRIST
+```
+
+---
+
 ## Files
+
 * `virtual_pen.py` → main script — webcam loop, hand detection, drawing logic, timer, UI overlay
 * `hand_landmarker.task` → MediaPipe model file (auto-downloaded on first run, ~25 MB)
 
 ---
 
+## Requirements
+
+```
+opencv-python
+mediapipe
+numpy
+```
+
+Install with:
+
+```bash
+pip install opencv-python mediapipe numpy
+```
+
+---
+
+## Usage
+
+```bash
+python virtual_pen.py
+```
+
+* Show your hand to the camera
+* Press **`S`** to start the 10-second drawing session
+* **Extend** your index finger to draw
+* **Curl** your finger to lift the pen and start a new stroke
+* Press **`C`** to clear the canvas
+* Press **`Q`** to quit
+
+---
+
+## Controls
+
+| Key | Action |
+|-----|--------|
+| `S` | Start drawing session |
+| `C` | Clear canvas |
+| `Q` | Quit |
+
+---
+
+## 👨‍💻 Author
+**Ashutosh Tare**
 ## Requirements
