@@ -1,16 +1,3 @@
-"""
-Virtual Pen — tracks your index fingertip via MediaPipe HandLandmarker.
-Works with mediapipe >= 0.10
-
-Install:
-    pip install opencv-python mediapipe numpy
-
-Controls:
-    S — start 5-second drawing session
-    C — clear canvas
-    Q — quit
-"""
-
 import cv2
 import numpy as np
 import time
