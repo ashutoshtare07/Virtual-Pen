@@ -113,5 +113,5 @@ python virtual_pen.py
 ---
 
 ## 👨‍💻 Author
-**Ashutosh Tare** | Aspiring ML Engineer | Data Science Enthusiast
+**Ashutosh Tare** | ML Engineer | Data Science Enthusiast
 
